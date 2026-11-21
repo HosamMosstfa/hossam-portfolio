@@ -46,3 +46,37 @@ A modern, high-performance engineering portfolio built with **React**, **Vite**,
 ├── package.json
 └── README.md
 ```
+
+---
+
+## 🚀 Getting Started Locally
+
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/HosamMosstfa/hossam-portfolio.git](https://github.com/HosamMosstfa/hossam-portfolio.git)
+   cd hossam-portfolio
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+
+4. **Build for production:**
+   ```bash
+   npm run build
+   ```
+
+---
+
+## 📬 Contact & Links
+
+- **Portfolio Live:** *(Add your Netlify URL after deployment)*
+- **LinkedIn:** [linkedin.com/in/hosammostfa](https://linkedin.com/in/hosammostfa)
+- **GitHub:** [github.com/HosamMosstfa](https://github.com/HosamMosstfa)
+- **Email:** [hossammostafa6520@gmail.com](mailto:hossammostafa6520@gmail.com)
