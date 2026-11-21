@@ -83,7 +83,7 @@ export default function Navbar({
           <BrandLogo className="h-9 w-9 shrink-0 transition-transform duration-300 group-hover:scale-105" />
           <div className="leading-tight">
             <span className="flex items-center gap-1.5 text-sm font-extrabold tracking-tight text-[#2B2D31] dark:text-[#D9DADC] sm:text-base">
-              <span>Hossam Farghaly</span>
+              <span>Hossam Mostafa Farghaly</span>
               <span
                 title="Available for opportunities"
                 className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500"
