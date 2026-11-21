@@ -1,16 +1,48 @@
-# React + Vite
+# Hossam Mostafa Farghaly — Full Stack .NET & Front-End Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, high-performance engineering portfolio built with **React**, **Vite**, and **Tailwind CSS**, tailored for recruiters and technical leads across **Saudi Arabia (KSA)** and **Egypt**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ✨ Key Features
 
-## React Compiler
+- **Recruiter Perspective Switcher:** Dynamically adapts the hero summary, core focus tags, and ATS CV preview across three specialized tracks:
+  - **Full Stack .NET Developer**
+  - **Back-End .NET Developer**
+  - **Front-End Developer**
+- **Region & Availability Toggle (KSA / Egypt):** Switches contact credentials, phone/WhatsApp links, and regional availability between **Dammam, KSA** and **Cairo, Egypt**.
+- **Interactive ATS CV Modal & Print Engine:** Built-in print-ready CV preview dynamically generated from the selected role perspective and region.
+- **SMARTPOOL Visual & Telemetry Showcase:** Interactive preview component featuring real project UI screenshots with fullscreen zoom, AI bounding-box simulation, and system telemetry metrics.
+- **Filterable & Sortable Engineering Projects:** Domain filtering (`All`, `Full Stack & AI`, `Back-End & .NET`, `Front-End`), timeline sorting, and deep-dive system architecture modals.
+- **Verified Credentials Lightbox:** Direct certificate previews and Google Drive verification links (ITI Full Stack .NET Track & EraaSoft Front-End Diploma).
+- **Dark / Light Theme & Accessible UI:** Smooth theme switching, keyboard-accessible modals (`ESC` support), and responsive layout across mobile, tablet, and desktop.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Core:** React 18, Vite, JavaScript (ES6+)
+- **Styling:** Tailwind CSS, Custom CSS Variables, Lucide React Icons
+- **Deployment:** GitHub CI/CD + Netlify (`netlify.toml` SPA routing configured)
+
+---
+
+## 📂 Project Structure
+
+```text
+├── public/
+│   ├── projects/               # Real project UI screenshots
+│   └── profile.jpg             # Portrait avatar
+├── src/
+│   ├── components/
+│   │   ├── common/             # Reusable UI, SpotlightCard, SmartPoolVisualPreview, Icons
+│   │   ├── layout/             # Navbar, Footer, Modals (CV & Project Architecture)
+│   │   └── sections/           # Hero, Projects, Skills, Experience, Certificates, Contact
+│   ├── data/
+│   │   └── portfolioData.js    # Centralized personal info, roles, projects & credentials
+│   ├── App.jsx
+│   └── main.jsx
+├── netlify.toml                # Netlify build & redirect rules
+├── package.json
+└── README.md
+```
