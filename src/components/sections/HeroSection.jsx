@@ -66,12 +66,17 @@ function Metric({ value, label }) {
 }
 
 function initials(name) {
-  const parts = name.trim().split(/\s+/);
-  return (parts[0][0] + (parts[parts.length - 1][0] || "")).toUpperCase();
+  if (!name || typeof name !== "string") return "HF";
+  const parts = name.trim().split(/\s+/).filter(Boolean);
+  if (!parts.length) return "HF";
+  const first = parts[0]?.[0] || "";
+  const last = parts.length > 1 ? parts[parts.length - 1]?.[0] || "" : "";
+  return (first + last || "HF").toUpperCase();
 }
 
 export default function HeroSection({ region, roleKey, setRoleKey, onOpenCv }) {
-  const activeRole = ROLE_PERSPECTIVES[roleKey];
+  const activeRole =
+    ROLE_PERSPECTIVES[roleKey] || Object.values(ROLE_PERSPECTIVES)[0];
   const [imgError, setImgError] = useState(false);
   const [isAvatarOpen, setIsAvatarOpen] = useState(false);
 
@@ -86,11 +91,12 @@ export default function HeroSection({ region, roleKey, setRoleKey, onOpenCv }) {
       if (e.key === "Escape") setIsAvatarOpen(false);
     };
 
+    const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [isAvatarOpen]);
@@ -114,7 +120,7 @@ export default function HeroSection({ region, roleKey, setRoleKey, onOpenCv }) {
                       className="relative flex h-2 w-2 shrink-0"
                     >
                       <span className="absolute inline-flex h-full w-full rounded-full bg-[#2B2D31] opacity-60 motion-safe:animate-ping" />
-                      <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-[#2B2D31]" />
                     </span>
                     {region.availability}
                   </span>
@@ -310,7 +316,7 @@ export default function HeroSection({ region, roleKey, setRoleKey, onOpenCv }) {
                     {activeRole.title}
                   </p>
                   <p className="mt-0.5 font-mono text-[11px] text-[#D9DADC]/70">
-                    B.Sc. CS · ITI .NET Track
+                    B.Sc. CS · Full Stack .NET Track
                   </p>
                 </div>
               </div>
@@ -332,13 +338,13 @@ export default function HeroSection({ region, roleKey, setRoleKey, onOpenCv }) {
                   />
                   <Credential
                     icon={GraduationCap}
-                    title="ITI Full Stack .NET Track"
-                    text="Government-sponsored intensive scholarship"
+                    title="Full Stack .NET Track"
+                    text="ITI intensive training track"
                   />
                   <Credential
                     icon={ShieldCheck}
                     title="B.Sc. Computer Science"
-                    text="Egyptian E-Learning University (2024)"
+                    text="Egyptian E-Learning University"
                   />
                 </ul>
               </div>
@@ -394,7 +400,7 @@ export default function HeroSection({ region, roleKey, setRoleKey, onOpenCv }) {
 
             {/* Footer Caption */}
             <div className="flex items-center justify-between border-t border-[#D9DADC]/15 bg-[#1B1D20] px-4 py-2.5 font-mono text-[11px] text-[#D9DADC]/80">
-              <span>B.Sc. CS · ITI .NET Alumni</span>
+              <span>B.Sc. CS · Full Stack .NET Track</span>
               <span className="text-[#FFC93C]">ESC to close</span>
             </div>
           </div>

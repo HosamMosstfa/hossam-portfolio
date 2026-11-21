@@ -488,7 +488,7 @@ export const EXPERIENCE = [
 
 export const EDUCATION = [
   {
-    degree: "Full Stack Web Development Using .NET Track",
+    degree: "Full Stack .NET Track",
     institution: "Information Technology Institute (ITI) — Minya",
     period: "Jul 2025 – Dec 2025",
     details:
