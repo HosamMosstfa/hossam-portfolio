@@ -16,12 +16,24 @@ function SectionHeading({ icon: Icon, title, subtitle }) {
           {title}
         </h2>
         {subtitle && (
-          <p className="mt-0.5 text-xs text-[#2B2D31]/75 dark:text-[#D9DADC]/70">
+          <p className="mt-0.5 text-xs text-[#2B2D31]/75 dark:text-[#D9DADC]/75">
             {subtitle}
           </p>
         )}
       </div>
     </div>
+  );
+}
+
+function TimelineCard({ children }) {
+  return (
+    <li className="group relative rounded-2xl border border-[#2B2D31]/20 bg-[#2B2D31] p-4 text-[#D9DADC] shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:border-[#FFC93C] dark:border-[#D9DADC]/20 dark:bg-[#D9DADC] dark:text-[#2B2D31]">
+      <span
+        aria-hidden="true"
+        className="absolute -left-[31px] top-5 h-3.5 w-3.5 rounded-full bg-[#FFC93C] ring-4 ring-[#D9DADC] transition-transform duration-200 group-hover:scale-110 dark:ring-[#2B2D31]"
+      />
+      {children}
+    </li>
   );
 }
 
@@ -43,56 +55,47 @@ export default function ExperienceSection() {
 
           <ol className="relative mt-7 space-y-5 border-l-2 border-[#2B2D31]/25 pl-6 dark:border-[#D9DADC]/20">
             {EXPERIENCE.map((exp) => (
-              <li
-                key={`${exp.role}-${exp.company}-${exp.period}`}
-                className="group relative rounded-2xl border border-[#2B2D31]/20 bg-[#2B2D31] p-4 text-[#D9DADC] shadow-sm transition-all duration-200 hover:border-[#FFC93C] dark:border-[#D9DADC]/15 dark:bg-[#181A1E] dark:hover:border-[#FFC93C]/70"
-              >
-                {/* Timeline Dot */}
-                <span
-                  aria-hidden="true"
-                  className="absolute -left-[31px] top-5 h-3.5 w-3.5 rounded-full bg-[#FFC93C] ring-4 ring-[#D9DADC] transition-transform duration-200 group-hover:scale-110 dark:ring-[#2B2D31]"
-                />
-
+              <TimelineCard key={`${exp.role}-${exp.company}-${exp.period}`}>
                 <div className="flex flex-wrap items-start justify-between gap-2">
-                  <h3 className="text-base font-extrabold text-white">
+                  <h3 className="text-base font-extrabold leading-snug">
                     {exp.role}
                   </h3>
-                  <span className="inline-flex items-center gap-1 rounded-md border border-[#D9DADC]/15 bg-[#D9DADC]/10 px-2 py-0.5 font-mono text-[11px] font-semibold text-[#D9DADC]/85">
+                  <span className="inline-flex items-center gap-1 rounded-md border border-[#D9DADC]/20 bg-[#D9DADC]/10 px-2 py-0.5 font-mono text-[11px] font-semibold opacity-90 dark:border-[#2B2D31]/20 dark:bg-[#2B2D31]/10">
                     <Calendar
                       aria-hidden="true"
-                      className="h-3 w-3 text-[#FFC93C]"
+                      className="h-3 w-3 text-[#FFC93C] dark:text-[#2B2D31]"
                     />
                     <span>{exp.period}</span>
                   </span>
                 </div>
 
                 <div className="mt-2 flex flex-wrap items-center gap-2 text-xs">
-                  <span className="inline-block rounded-md bg-[#FFC93C]/15 px-2.5 py-0.5 font-bold text-[#FFC93C] ring-1 ring-[#FFC93C]/30">
+                  <span className="inline-block rounded-md bg-[#FFC93C] px-2.5 py-0.5 font-extrabold text-[#2B2D31]">
                     {exp.company}
                   </span>
                   {exp.location && (
-                    <span className="inline-flex items-center gap-1 font-mono text-[11px] text-[#D9DADC]/75">
+                    <span className="inline-flex items-center gap-1 font-mono text-[11px] font-semibold opacity-80">
                       <MapPin
                         aria-hidden="true"
-                        className="h-3 w-3 text-[#FFC93C]"
+                        className="h-3 w-3 text-[#FFC93C] dark:text-[#2B2D31]"
                       />
                       <span>{exp.location}</span>
                     </span>
                   )}
                 </div>
 
-                <ul className="mt-3 space-y-2 text-sm leading-relaxed text-[#D9DADC]/90">
+                <ul className="mt-3 space-y-2 text-sm leading-relaxed opacity-90">
                   {exp.points.map((pt, i) => (
                     <li key={i} className="flex items-start gap-2.5">
                       <span
                         aria-hidden="true"
-                        className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#FFC93C]"
+                        className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#FFC93C] dark:bg-[#2B2D31]"
                       />
                       <span>{pt}</span>
                     </li>
                   ))}
                 </ul>
-              </li>
+              </TimelineCard>
             ))}
           </ol>
         </RevealSection>
@@ -107,37 +110,30 @@ export default function ExperienceSection() {
 
           <ol className="relative mt-7 space-y-5 border-l-2 border-[#2B2D31]/25 pl-6 dark:border-[#D9DADC]/20">
             {EDUCATION.map((edu) => (
-              <li
+              <TimelineCard
                 key={`${edu.degree}-${edu.institution}-${edu.period}`}
-                className="group relative rounded-2xl border border-[#2B2D31]/20 bg-[#2B2D31] p-4 text-[#D9DADC] shadow-sm transition-all duration-200 hover:border-[#FFC93C] dark:border-[#D9DADC]/15 dark:bg-[#181A1E] dark:hover:border-[#FFC93C]/70"
               >
-                {/* Timeline Dot */}
-                <span
-                  aria-hidden="true"
-                  className="absolute -left-[31px] top-5 h-3.5 w-3.5 rounded-full bg-[#FFC93C] ring-4 ring-[#D9DADC] transition-transform duration-200 group-hover:scale-110 dark:ring-[#2B2D31]"
-                />
-
                 <div className="flex flex-wrap items-start justify-between gap-2">
-                  <h3 className="text-base font-extrabold text-white">
+                  <h3 className="text-base font-extrabold leading-snug">
                     {edu.degree}
                   </h3>
-                  <span className="inline-flex items-center gap-1 rounded-md border border-[#D9DADC]/15 bg-[#D9DADC]/10 px-2 py-0.5 font-mono text-[11px] font-semibold text-[#D9DADC]/85">
+                  <span className="inline-flex items-center gap-1 rounded-md border border-[#D9DADC]/20 bg-[#D9DADC]/10 px-2 py-0.5 font-mono text-[11px] font-semibold opacity-90 dark:border-[#2B2D31]/20 dark:bg-[#2B2D31]/10">
                     <Calendar
                       aria-hidden="true"
-                      className="h-3 w-3 text-[#FFC93C]"
+                      className="h-3 w-3 text-[#FFC93C] dark:text-[#2B2D31]"
                     />
                     <span>{edu.period}</span>
                   </span>
                 </div>
 
-                <p className="mt-2 inline-block rounded-md bg-[#FFC93C]/15 px-2.5 py-0.5 text-xs font-bold text-[#FFC93C] ring-1 ring-[#FFC93C]/30">
+                <p className="mt-2 inline-block rounded-md bg-[#FFC93C] px-2.5 py-0.5 text-xs font-extrabold text-[#2B2D31]">
                   {edu.institution}
                 </p>
 
-                <p className="mt-3 text-sm leading-relaxed text-[#D9DADC]/90">
+                <p className="mt-3 text-sm leading-relaxed opacity-90">
                   {edu.details}
                 </p>
-              </li>
+              </TimelineCard>
             ))}
           </ol>
         </RevealSection>

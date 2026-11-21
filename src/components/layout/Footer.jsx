@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   ArrowUp,
   Mail,
@@ -38,12 +38,24 @@ async function copyTextSafe(value) {
 
 export default function Footer({ showBackToTop }) {
   const [copied, setCopied] = useState(false);
+  const copyTimerRef = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      if (copyTimerRef.current) {
+        clearTimeout(copyTimerRef.current);
+      }
+    };
+  }, []);
 
   const handleCopyEmail = async () => {
     try {
       await copyTextSafe(PERSONAL_INFO.email);
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      if (copyTimerRef.current) {
+        clearTimeout(copyTimerRef.current);
+      }
+      copyTimerRef.current = setTimeout(() => setCopied(false), 2000);
     } catch {
       window.location.href = `mailto:${PERSONAL_INFO.email}`;
     }
@@ -72,7 +84,7 @@ export default function Footer({ showBackToTop }) {
                   <p className="text-base font-extrabold tracking-tight text-[#2B2D31] dark:text-white">
                     {PERSONAL_INFO.name}
                   </p>
-                  <p className="font-mono text-[11px] font-bold text-[#9A6700] dark:text-[#FFC93C]">
+                  <p className="font-mono text-[11px] font-bold text-[#7A4F00] dark:text-[#FFC93C]">
                     Full Stack .NET &amp; Front-End Developer
                   </p>
                 </div>
@@ -86,17 +98,17 @@ export default function Footer({ showBackToTop }) {
 
               {/* Status & Location Pill */}
               <div className="flex flex-wrap items-center gap-2 pt-1 font-mono text-[11px]">
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-[#2B2D31]/20 bg-white/80 px-3 py-1 font-bold text-[#2B2D31] shadow-2xs dark:border-[#FFC93C]/30 dark:bg-[#FFC93C]/10 dark:text-[#FFC93C]">
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-[#2B2D31]/20 bg-[#2B2D31]/85 px-3 py-1 font-bold text-[#D9DADC] backdrop-blur-xs shadow-2xs dark:border-[#D9DADC]/20 dark:bg-[#D9DADC]/90 dark:text-[#2B2D31]">
                   <span
                     aria-hidden="true"
-                    className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"
+                    className="h-2 w-2 rounded-full bg-[#FFC93C] animate-pulse dark:bg-[#2B2D31]"
                   />
                   <span>Open to Full-Time &amp; Remote Roles</span>
                 </span>
                 <span className="inline-flex items-center gap-1 font-semibold text-[#2B2D31]/75 dark:text-[#D9DADC]/70">
                   <MapPin
                     aria-hidden="true"
-                    className="h-3.5 w-3.5 text-[#9A6700] dark:text-[#FFC93C]"
+                    className="h-3.5 w-3.5 text-[#7A4F00] dark:text-[#FFC93C]"
                   />
                   <span>Dammam, KSA · Cairo, EG</span>
                 </span>
@@ -105,7 +117,7 @@ export default function Footer({ showBackToTop }) {
 
             {/* Column 2: Quick Navigation */}
             <div className="md:col-span-3">
-              <h3 className="font-mono text-xs font-extrabold uppercase tracking-wider text-[#9A6700] dark:text-[#FFC93C]">
+              <h3 className="font-mono text-xs font-extrabold uppercase tracking-wider text-[#7A4F00] dark:text-[#FFC93C]">
                 Navigation
               </h3>
               <ul className="mt-4 space-y-2.5 text-sm font-semibold">
@@ -117,7 +129,7 @@ export default function Footer({ showBackToTop }) {
                     >
                       <span
                         aria-hidden="true"
-                        className="h-1.5 w-1.5 rounded-full bg-[#FFC93C]"
+                        className="h-1.5 w-1.5 rounded-full bg-[#7A4F00] dark:bg-[#FFC93C]"
                       />
                       <span>{link.label}</span>
                     </a>
@@ -128,7 +140,7 @@ export default function Footer({ showBackToTop }) {
 
             {/* Column 3: Direct Connect & Socials */}
             <div className="md:col-span-4">
-              <h3 className="font-mono text-xs font-extrabold uppercase tracking-wider text-[#9A6700] dark:text-[#FFC93C]">
+              <h3 className="font-mono text-xs font-extrabold uppercase tracking-wider text-[#7A4F00] dark:text-[#FFC93C]">
                 Direct Connect
               </h3>
               <p className="mt-4 text-xs leading-relaxed text-[#2B2D31]/85 dark:text-[#D9DADC]/75">
@@ -137,14 +149,14 @@ export default function Footer({ showBackToTop }) {
               </p>
 
               {/* Copyable Email Box */}
-              <div className="mt-3 flex items-center justify-between gap-2 rounded-xl border border-[#2B2D31]/20 bg-white/85 px-3 py-2 shadow-2xs dark:border-[#D9DADC]/15 dark:bg-[#1C1E22]">
+              <div className="mt-3 flex items-center justify-between gap-2 rounded-xl border border-[#2B2D31]/20 bg-[#2B2D31]/85 px-3 py-2 text-[#D9DADC] backdrop-blur-xs shadow-2xs transition focus-within:border-[#FFC93C] dark:border-[#D9DADC]/20 dark:bg-[#D9DADC]/90 dark:text-[#2B2D31]">
                 <a
                   href={`mailto:${PERSONAL_INFO.email}`}
-                  className="flex min-w-0 items-center gap-2 truncate font-mono text-xs font-semibold text-[#2B2D31] transition hover:text-[#9A6700] dark:text-[#D9DADC] dark:hover:text-[#FFC93C]"
+                  className="flex min-w-0 items-center gap-2 truncate font-mono text-xs font-semibold text-[#D9DADC] transition hover:text-[#FFC93C] dark:text-[#2B2D31] dark:hover:opacity-75"
                 >
                   <Mail
                     aria-hidden="true"
-                    className="h-3.5 w-3.5 shrink-0 text-[#9A6700] dark:text-[#FFC93C]"
+                    className="h-3.5 w-3.5 shrink-0 text-[#FFC93C] dark:text-[#2B2D31]"
                   />
                   <span className="truncate">{PERSONAL_INFO.email}</span>
                 </a>
@@ -180,13 +192,13 @@ export default function Footer({ showBackToTop }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="GitHub Profile"
-                  className="inline-flex items-center gap-2 rounded-xl border border-[#2B2D31]/20 bg-white/85 px-3.5 py-2 text-xs font-bold text-[#2B2D31] shadow-2xs transition hover:-translate-y-0.5 hover:border-[#FFC93C] hover:bg-[#FFC93C] dark:border-[#D9DADC]/15 dark:bg-[#1C1E22] dark:text-[#D9DADC] dark:hover:border-[#FFC93C] dark:hover:bg-[#FFC93C] dark:hover:text-[#2B2D31]"
+                  className="inline-flex items-center gap-2 rounded-xl border border-[#2B2D31]/20 bg-[#2B2D31]/85 px-3.5 py-2 text-xs font-bold text-[#D9DADC] backdrop-blur-xs shadow-2xs transition hover:-translate-y-0.5 hover:border-[#FFC93C] hover:bg-[#FFC93C] hover:text-[#2B2D31] dark:border-[#D9DADC]/20 dark:bg-[#D9DADC]/90 dark:text-[#2B2D31] dark:hover:border-[#2B2D31] dark:hover:bg-[#2B2D31] dark:hover:text-[#FFC93C]"
                 >
                   <GithubIcon aria-hidden="true" className="h-4 w-4" />
                   <span>GitHub</span>
                   <ExternalLink
                     aria-hidden="true"
-                    className="h-3 w-3 opacity-65"
+                    className="h-3 w-3 opacity-70"
                   />
                 </a>
 
@@ -195,13 +207,13 @@ export default function Footer({ showBackToTop }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn Profile"
-                  className="inline-flex items-center gap-2 rounded-xl border border-[#2B2D31]/20 bg-white/85 px-3.5 py-2 text-xs font-bold text-[#2B2D31] shadow-2xs transition hover:-translate-y-0.5 hover:border-[#FFC93C] hover:bg-[#FFC93C] dark:border-[#D9DADC]/15 dark:bg-[#1C1E22] dark:text-[#D9DADC] dark:hover:border-[#FFC93C] dark:hover:bg-[#FFC93C] dark:hover:text-[#2B2D31]"
+                  className="inline-flex items-center gap-2 rounded-xl border border-[#2B2D31]/20 bg-[#2B2D31]/85 px-3.5 py-2 text-xs font-bold text-[#D9DADC] backdrop-blur-xs shadow-2xs transition hover:-translate-y-0.5 hover:border-[#FFC93C] hover:bg-[#FFC93C] hover:text-[#2B2D31] dark:border-[#D9DADC]/20 dark:bg-[#D9DADC]/90 dark:text-[#2B2D31] dark:hover:border-[#2B2D31] dark:hover:bg-[#2B2D31] dark:hover:text-[#FFC93C]"
                 >
                   <LinkedinIcon aria-hidden="true" className="h-4 w-4" />
                   <span>LinkedIn</span>
                   <ExternalLink
                     aria-hidden="true"
-                    className="h-3 w-3 opacity-65"
+                    className="h-3 w-3 opacity-70"
                   />
                 </a>
               </div>
@@ -222,7 +234,7 @@ export default function Footer({ showBackToTop }) {
               <span className="inline-flex items-center gap-1.5 font-mono text-[11px] font-medium">
                 <Terminal
                   aria-hidden="true"
-                  className="h-3.5 w-3.5 text-[#9A6700] dark:text-[#FFC93C]"
+                  className="h-3.5 w-3.5 text-[#7A4F00] dark:text-[#FFC93C]"
                 />
                 <span>Engineered with React · Vite · Tailwind</span>
               </span>
@@ -230,7 +242,7 @@ export default function Footer({ showBackToTop }) {
               <button
                 type="button"
                 onClick={scrollToTop}
-                className="inline-flex items-center gap-1 rounded-lg border border-[#2B2D31]/20 bg-white/80 px-2.5 py-1 font-mono text-[11px] font-bold text-[#2B2D31] transition hover:border-[#FFC93C] hover:bg-[#FFC93C] dark:border-[#D9DADC]/20 dark:bg-[#1C1E22] dark:text-[#D9DADC] dark:hover:border-[#FFC93C] dark:hover:bg-[#FFC93C] dark:hover:text-[#2B2D31]"
+                className="inline-flex items-center gap-1 rounded-lg border border-[#2B2D31]/20 bg-[#2B2D31]/85 px-2.5 py-1 font-mono text-[11px] font-bold text-[#D9DADC] backdrop-blur-xs transition hover:border-[#FFC93C] hover:bg-[#FFC93C] hover:text-[#2B2D31] dark:border-[#D9DADC]/20 dark:bg-[#D9DADC]/90 dark:text-[#2B2D31] dark:hover:border-[#2B2D31] dark:hover:bg-[#2B2D31] dark:hover:text-[#FFC93C]"
               >
                 <span>Top</span>
                 <ArrowUp aria-hidden="true" className="h-3 w-3" />

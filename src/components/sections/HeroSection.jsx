@@ -32,7 +32,7 @@ const BTN_PRIMARY = `${BTN_BASE} bg-[#FFC93C] font-extrabold text-[#2B2D31] shad
 
 const BTN_DARK = `${BTN_BASE} bg-[#2B2D31] font-bold text-[#D9DADC] hover:ring-2 hover:ring-[#FFC93C] dark:bg-[#D9DADC] dark:text-[#2B2D31]`;
 
-const BTN_OUTLINE = `${BTN_BASE} border border-[#2B2D31]/25 bg-[#2B2D31]/10 px-3 font-bold text-[#2B2D31] hover:border-[#FFC93C] hover:bg-[#FFC93C] dark:border-[#D9DADC]/25 dark:bg-[#D9DADC]/10 dark:text-[#D9DADC] dark:hover:border-[#FFC93C] dark:hover:bg-[#2B2D31] dark:hover:text-[#FFC93C]`;
+const BTN_OUTLINE = `${BTN_BASE} border border-[#2B2D31]/25 bg-[#2B2D31]/10 px-3 font-bold text-[#2B2D31] hover:border-[#FFC93C] hover:bg-[#FFC93C] hover:text-[#2B2D31] dark:border-[#D9DADC]/25 dark:bg-[#D9DADC]/10 dark:text-[#D9DADC] dark:hover:border-[#FFC93C] dark:hover:bg-[#2B2D31] dark:hover:text-[#FFC93C]`;
 
 /* ---------- small presentational pieces ---------- */
 function Credential({ icon: Icon, title, text }) {
@@ -40,13 +40,17 @@ function Credential({ icon: Icon, title, text }) {
     <li className="flex items-start gap-2.5">
       <span
         aria-hidden="true"
-        className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#FFC93C]/15 text-[#FFC93C] ring-1 ring-[#FFC93C]/40"
+        className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#FFC93C] text-[#2B2D31] shadow-2xs"
       >
         <Icon className="h-3.5 w-3.5" />
       </span>
       <div className="min-w-0">
-        <p className="text-[13px] font-bold leading-snug text-white">{title}</p>
-        <p className="text-[11px] leading-snug text-[#D9DADC]/75">{text}</p>
+        <p className="text-[13px] font-bold leading-snug text-white dark:text-[#2B2D31]">
+          {title}
+        </p>
+        <p className="text-[11px] leading-snug text-[#D9DADC]/75 dark:text-[#2B2D31]/75">
+          {text}
+        </p>
       </div>
     </li>
   );
@@ -55,10 +59,10 @@ function Credential({ icon: Icon, title, text }) {
 function Metric({ value, label }) {
   return (
     <div className="px-1.5">
-      <p className="font-mono text-sm font-extrabold text-[#FFC93C] sm:text-base">
+      <p className="font-mono text-sm font-extrabold text-[#FFC93C] dark:text-[#2B2D31] sm:text-base">
         {value}
       </p>
-      <p className="mt-0.5 text-[10px] leading-tight text-[#D9DADC]/70">
+      <p className="mt-0.5 text-[10px] leading-tight text-[#D9DADC]/70 dark:text-[#2B2D31]/75">
         {label}
       </p>
     </div>
@@ -250,7 +254,7 @@ export default function HeroSection({ region, roleKey, setRoleKey, onOpenCv }) {
             </div>
 
             {/* ---------- Right: balanced executive card ---------- */}
-            <SpotlightCard className="flex min-w-0 flex-col justify-between rounded-2xl border border-[#2B2D31]/20 bg-[#2B2D31] p-5 text-[#D9DADC] shadow-xl dark:border-[#FFC93C]/25 dark:bg-[#1C1E22] lg:col-span-5 xl:col-span-4">
+            <SpotlightCard className="flex min-w-0 flex-col justify-between rounded-2xl border border-[#2B2D31]/20 bg-[#2B2D31] p-5 text-[#D9DADC] shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-[#FFC93C] dark:border-[#D9DADC]/20 dark:bg-[#D9DADC] dark:text-[#2B2D31] lg:col-span-5 xl:col-span-4">
               {/* Top: Interactive Portrait + Role */}
               <div className="flex items-center gap-4">
                 <div className="relative h-24 w-24 shrink-0">
@@ -262,7 +266,7 @@ export default function HeroSection({ region, roleKey, setRoleKey, onOpenCv }) {
                     title={
                       hasValidAvatar ? "Click to enlarge photo" : undefined
                     }
-                    className={`group relative h-full w-full overflow-hidden rounded-2xl bg-[#E5E7EB] ring-2 ring-[#FFC93C] ring-offset-2 ring-offset-[#2B2D31] dark:ring-offset-[#1C1E22] ${
+                    className={`group relative h-full w-full overflow-hidden rounded-2xl bg-[#E5E7EB] ring-2 ring-[#FFC93C] ring-offset-2 ring-offset-[#2B2D31] dark:ring-[#2B2D31] dark:ring-offset-[#D9DADC] ${
                       hasValidAvatar
                         ? "cursor-zoom-in transition hover:ring-4"
                         : "cursor-default"
@@ -291,7 +295,7 @@ export default function HeroSection({ region, roleKey, setRoleKey, onOpenCv }) {
                     ) : (
                       <div
                         aria-hidden="true"
-                        className="flex h-full w-full items-center justify-center font-mono text-xl font-extrabold text-[#FFC93C]"
+                        className="flex h-full w-full items-center justify-center font-mono text-xl font-extrabold text-[#FFC93C] dark:text-[#2B2D31]"
                       >
                         {initials(PERSONAL_INFO.name)}
                       </div>
@@ -300,7 +304,7 @@ export default function HeroSection({ region, roleKey, setRoleKey, onOpenCv }) {
 
                   <span
                     title="Open to work"
-                    className="pointer-events-none absolute -bottom-1.5 -right-1.5 flex h-6 w-6 items-center justify-center rounded-lg border-2 border-[#2B2D31] bg-[#FFC93C] text-[#2B2D31] dark:border-[#1C1E22]"
+                    className="pointer-events-none absolute -bottom-1.5 -right-1.5 flex h-6 w-6 items-center justify-center rounded-lg border-2 border-[#2B2D31] bg-[#FFC93C] text-[#2B2D31] dark:border-[#D9DADC]"
                   >
                     <CheckCircle2 aria-hidden="true" className="h-3.5 w-3.5" />
                     <span className="sr-only">Open to work</span>
@@ -308,28 +312,28 @@ export default function HeroSection({ region, roleKey, setRoleKey, onOpenCv }) {
                 </div>
 
                 <div className="min-w-0">
-                  <span className="inline-flex items-center gap-1 font-mono text-[10px] font-bold uppercase tracking-wider text-[#FFC93C]">
+                  <span className="inline-flex items-center gap-1 rounded bg-[#FFC93C] px-2 py-0.5 font-mono text-[10px] font-extrabold uppercase tracking-wider text-[#2B2D31]">
                     <Sparkles aria-hidden="true" className="h-3 w-3" />
                     <span>Engineering Profile</span>
                   </span>
-                  <p className="mt-0.5 text-sm font-extrabold leading-snug text-white sm:text-base">
+                  <p className="mt-1 text-sm font-extrabold leading-snug text-white dark:text-[#2B2D31] sm:text-base">
                     {activeRole.title}
                   </p>
-                  <p className="mt-0.5 font-mono text-[11px] text-[#D9DADC]/70">
+                  <p className="mt-0.5 font-mono text-[11px] text-[#D9DADC]/75 dark:text-[#2B2D31]/75">
                     B.Sc. CS · Full Stack .NET Track
                   </p>
                 </div>
               </div>
 
               {/* Middle: Quick Metrics */}
-              <div className="my-4 grid grid-cols-3 divide-x divide-[#D9DADC]/15 rounded-xl border border-[#D9DADC]/15 bg-[#16181B]/70 py-2.5 text-center">
+              <div className="my-4 grid grid-cols-3 divide-x divide-[#D9DADC]/15 rounded-xl border border-[#D9DADC]/15 bg-[#16181B]/70 py-2.5 text-center dark:divide-[#2B2D31]/15 dark:border-[#2B2D31]/15 dark:bg-[#2B2D31]/10">
                 <Metric value={liveProjects} label="Live Projects" />
                 <Metric value="3rd" label="Google DevFest" />
                 <Metric value="ITI" label=".NET Alumni" />
               </div>
 
               {/* Bottom: Credentials */}
-              <div className="border-t border-[#D9DADC]/15 pt-4">
+              <div className="border-t border-[#D9DADC]/15 pt-4 dark:border-[#2B2D31]/15">
                 <ul className="grid gap-3 text-sm md:grid-cols-2 lg:grid-cols-1">
                   <Credential
                     icon={Award}
