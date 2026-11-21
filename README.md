@@ -76,7 +76,7 @@ A modern, high-performance engineering portfolio built with **React**, **Vite**,
 
 ## 📬 Contact & Links
 
-- **Portfolio Live:** *(Add your Netlify URL after deployment)*
+- **Portfolio Live:** *([https://hosam-mostafa.netlify.app/](https://hosam-mostafa.netlify.app/))*
 - **LinkedIn:** [linkedin.com/in/hosammostfa](https://linkedin.com/in/hosammostfa)
 - **GitHub:** [github.com/HosamMosstfa](https://github.com/HosamMosstfa)
 - **Email:** [hossammostafa6520@gmail.com](mailto:hossammostafa6520@gmail.com)
