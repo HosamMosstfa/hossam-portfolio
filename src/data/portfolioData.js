@@ -135,7 +135,7 @@ export const PROJECTS = [
       "Deep Learning",
       "Middleware Auth",
     ],
-    githubUrl: "",
+    githubUrl: "https://github.com/HosamMosstfa/projectgraduation",
     liveUrl: "",
     architecture: {
       frontend:
