@@ -1,6 +1,5 @@
 export const PERSONAL_INFO = {
   name: "Hossam Mostafa Farghaly",
-  avatar: "/profile.jpg",
   email: "hossammostafa6520@gmail.com",
   linkedin: "https://linkedin.com/in/hosammostfa",
   github: "https://github.com/HosamMosstfa",
@@ -32,7 +31,7 @@ export const ROLE_PERSPECTIVES = {
     tagline:
       "Building end-to-end web systems with ASP.NET Core, SQL Server, Angular, and React.",
     summary:
-      "Full Stack .NET Developer skilled in ASP.NET Core, C#, Entity Framework Core, and SQL Server, with front-end expertise in Angular, TypeScript, React.js, Next.js, and Supabase. Graduate of the government-sponsored ITI Full Stack .NET Scholarship (2025) and winner of 3rd place at Google DevFest (Assiut) for SMARTPOOL AI monitoring dashboard.",
+      "Full Stack .NET Developer skilled in ASP.NET Core, C#, Entity Framework Core, and SQL Server, with front-end expertise in Angular, TypeScript, React.js, and Next.js. Graduate of the government-sponsored ITI Full Stack .NET Scholarship (2025) and winner of 3rd place at Google DevFest (Assiut) for SMARTPOOL AI monitoring dashboard.",
     coreFocus: [
       "ASP.NET Core",
       ".NET 8",
@@ -41,7 +40,7 @@ export const ROLE_PERSPECTIVES = {
       "Angular",
       "React.js",
       "Next.js",
-      "Supabase",
+      "RESTful APIs",
     ],
   },
   backend: {
@@ -51,7 +50,7 @@ export const ROLE_PERSPECTIVES = {
     tagline:
       "Architecting secure APIs, relational data layers, and scalable .NET 8 services.",
     summary:
-      "Back-End .NET Developer focused on ASP.NET Core, C#, Entity Framework Core, LINQ, and SQL Server, specializing in secure authentication (PBKDF2 / Middleware / RLS), Clean Architecture, efficient data access, and RESTful API integration.",
+      "Back-End .NET Developer focused on ASP.NET Core, C#, Entity Framework Core, LINQ, and SQL Server, specializing in secure authentication (PBKDF2 / Middleware), Clean Architecture, efficient data access, and RESTful API integration.",
     coreFocus: [
       "C#",
       "ASP.NET Core",
@@ -59,7 +58,7 @@ export const ROLE_PERSPECTIVES = {
       "Entity Framework Core",
       "LINQ",
       "SQL Server",
-      "PostgreSQL",
+      "MongoDB",
       "Clean Architecture",
     ],
   },
@@ -70,7 +69,7 @@ export const ROLE_PERSPECTIVES = {
     tagline:
       "Crafting fast, responsive single-page applications with Angular, React, and TypeScript.",
     summary:
-      "Front-End Developer experienced in Angular, TypeScript, RxJS, React.js, and Next.js, building responsive, accessible user interfaces with TailwindCSS, Bootstrap, bilingual RTL/LTR support, and modern REST API state management.",
+      "Front-End Developer experienced in Angular, TypeScript, RxJS, React.js, and Next.js, building responsive, accessible user interfaces with TailwindCSS, Bootstrap, and modern REST API state management.",
     coreFocus: [
       "Angular",
       "TypeScript",
@@ -79,7 +78,7 @@ export const ROLE_PERSPECTIVES = {
       "Next.js 14",
       "TailwindCSS",
       "Bootstrap 5",
-      "RTL / UI-UX",
+      "UI/UX",
     ],
   },
 };
@@ -90,37 +89,9 @@ export const PROJECTS = [
     title: "SMARTPOOL — AI-Based Swimming Pool Monitoring Dashboard",
     category: "Full Stack & AI",
     period: "Oct 2023 – Jun 2024",
-    sortDate: "2024-06",
-    priority: 1,
     badge: "3rd Place · Google DevFest Assiut",
     featured: true,
     hasVisualPreview: true,
-    screenshots: [
-      {
-        label: "AI Detection",
-        src: "/projects/smartpool-ai-detection.jpg",
-        caption:
-          "Real-time Computer Vision inference detecting drowning posture (Bounding Box)",
-      },
-      {
-        label: "Admin Dashboard",
-        src: "/projects/smartpool-dashboard.png",
-        caption:
-          "Facility analytics, live revenue/reservations metrics & incident logs",
-      },
-      {
-        label: "RBAC Users",
-        src: "/projects/smartpool-users.png",
-        caption:
-          "Role-based access control managing Admins, Lifeguards & Clients",
-      },
-      {
-        label: "Auth Portal",
-        src: "/projects/smartpool-login.png",
-        caption:
-          "Middleware-protected authentication portal for facility staff",
-      },
-    ],
     description:
       "Award-winning AI safety dashboard that won 3rd Place at Google DevFest (Assiut). Detects drowning incidents and abnormal swimmer behavior in real time via computer vision and triggers instant role-based alerts for lifeguards and facility admins.",
     highlights: [
@@ -135,7 +106,7 @@ export const PROJECTS = [
       "Deep Learning",
       "Middleware Auth",
     ],
-    githubUrl: "https://github.com/HosamMosstfa/projectgraduation",
+    githubUrl: "",
     liveUrl: "",
     architecture: {
       frontend:
@@ -153,8 +124,6 @@ export const PROJECTS = [
     title: "Digital Notes Manager",
     category: "Back-End & .NET",
     period: "Oct 2025",
-    sortDate: "2025-10",
-    priority: 2,
     badge: ".NET 8 Desktop App",
     featured: true,
     hasVisualPreview: false,
@@ -188,52 +157,10 @@ export const PROJECTS = [
     },
   },
   {
-    id: "dar-alnakheel",
-    title: "Dar Al-Nakheel — Calligraphy E-Commerce Studio",
-    category: "Full Stack & AI",
-    period: "2026",
-    sortDate: "2026-02",
-    priority: 3,
-    badge: "Live App · React + Supabase",
-    featured: true,
-    hasVisualPreview: false,
-    description:
-      "Bilingual (Arabic/English) e-commerce and calligraphy studio web app for Dar Al-Nakheel Fine Press & Arabic Calligraphy: live Arabic typography preview, limited-edition catalog, custom commission requests, cart with printable tax invoice, and customer/admin dashboards.",
-    highlights: [
-      "Built an interactive specimen lab that previews vocalized Arabic text live with automatic diacritic rubrication and switchable Naskh, Kufi, and Diwani styles.",
-      "Implemented the collector cart with discount codes, automatic free shipping, 15% VAT, and a printable simplified tax invoice.",
-      "Developed customer and admin studios for order tracking, draft saving, and catalog and order management, backed by Supabase Auth and PostgreSQL with Row Level Security.",
-      "Delivered full RTL/LTR bilingual support with Arabic/English switching and a dark mode.",
-    ],
-    techStack: [
-      "React.js",
-      "Vite",
-      "Tailwind CSS v4",
-      "Supabase",
-      "PostgreSQL",
-      "Context API",
-      "EmailJS",
-      "Netlify",
-    ],
-    githubUrl: "https://github.com/HosamMosstfa/dar-alnakheel",
-    liveUrl: "https://lively-bienenstitch-ea151f.netlify.app/",
-    architecture: {
-      frontend:
-        "React + Vite single-page app styled with Tailwind CSS v4, organized into reusable components and Auth, Cart, Language, Theme, and Toast context providers.",
-      state:
-        "Context-based global state for authentication, cart, language (RTL/LTR), and theme, with a localStorage demo fallback when Supabase keys are not connected.",
-      backend:
-        "Supabase Auth and PostgreSQL with Row Level Security; optional EmailJS notifications for commission requests.",
-      deployment: "Git-connected deployment on Netlify (netlify.toml).",
-    },
-  },
-  {
     id: "movie-discovery",
     title: "Movie Discovery & Tracking Platform",
     category: "Front-End",
     period: "Nov 2025",
-    sortDate: "2025-11",
-    priority: 4,
     badge: "Live App · Angular SPA",
     featured: true,
     hasVisualPreview: false,
@@ -266,49 +193,10 @@ export const PROJECTS = [
     },
   },
   {
-    id: "ai-chat-generator",
-    title: "AI Chat Assistant & Image Generator",
-    category: "Full Stack & AI",
-    period: "Nov 2025",
-    sortDate: "2025-11",
-    priority: 5,
-    badge: "Live App · Fireworks.ai API",
-    featured: true,
-    hasVisualPreview: false,
-    description:
-      "Interactive web application integrating Fireworks.ai REST APIs for conversational GPT responses and text-to-image generation with dynamic session history.",
-    highlights: [
-      "Integrated Fireworks.ai endpoints for dual text chat and image synthesis.",
-      "Handled non-blocking asynchronous requests with Async/Await and loading states.",
-      "Maintained seamless conversation history without page reloads.",
-    ],
-    techStack: [
-      "JavaScript (ES6+)",
-      "RESTful APIs",
-      "Async/Await",
-      "Bootstrap 5",
-      "CSS3",
-    ],
-    githubUrl: "",
-    liveUrl: "https://hosammosstfa.github.io/ChatGPTDemo-ITI-Project/",
-    architecture: {
-      frontend:
-        "Responsive Bootstrap 5 chat interface with real-time typing and image generation loaders.",
-      backend:
-        "Direct RESTful consumption of Fireworks.ai LLM and text-to-image endpoints.",
-      state:
-        "In-memory dynamic session history manager updating conversation threads without page reloads.",
-      performance:
-        "Non-blocking Fetch + Async/Await error handling and media rendering.",
-    },
-  },
-  {
     id: "iti-ecommerce",
     title: "E-Commerce Platform (ITI Agile Team)",
     category: "Front-End",
     period: "Aug 2025 – Sep 2025",
-    sortDate: "2025-09",
-    priority: 6,
     badge: "Live App · Vercel",
     featured: true,
     hasVisualPreview: false,
@@ -340,13 +228,85 @@ export const PROJECTS = [
     },
   },
   {
+    id: "ai-chat-generator",
+    title: "AI Chat Assistant & Image Generator",
+    category: "Full Stack & AI",
+    period: "Nov 2025",
+    badge: "Live App · Fireworks.ai API",
+    featured: true,
+    hasVisualPreview: false,
+    description:
+      "Interactive web application integrating Fireworks.ai REST APIs for conversational GPT responses and text-to-image generation with dynamic session history.",
+    highlights: [
+      "Integrated Fireworks.ai endpoints for dual text chat and image synthesis.",
+      "Handled non-blocking asynchronous requests with Async/Await and loading states.",
+      "Maintained seamless conversation history without page reloads.",
+    ],
+    techStack: [
+      "JavaScript (ES6+)",
+      "RESTful APIs",
+      "Async/Await",
+      "Bootstrap 5",
+      "CSS3",
+    ],
+    githubUrl: "",
+    liveUrl: "https://hosammosstfa.github.io/ChatGPTDemo-ITI-Project/",
+    architecture: {
+      frontend:
+        "Responsive Bootstrap 5 chat interface with real-time typing and image generation loaders.",
+      backend:
+        "Direct RESTful consumption of Fireworks.ai LLM and text-to-image endpoints.",
+      state:
+        "In-memory dynamic session history manager updating conversation threads without page reloads.",
+      performance:
+        "Non-blocking Fetch + Async/Await error handling and media rendering.",
+    },
+  },
+  {
+    id: "dar-alnakheel",
+    title: "Dar Al-Nakheel — Calligraphy E-Commerce Studio",
+    category: "Full Stack",
+    period: "Nov 2026",
+    badge: "Live App · React + Supabase",
+    featured: true,
+    hasVisualPreview: false,
+    description:
+      "Bilingual (Arabic/English) e-commerce and calligraphy studio web app for Dar Al-Nakheel Fine Press & Arabic Calligraphy: live Arabic typography preview, limited-edition catalog, custom commission requests, cart with printable tax invoice, and customer/admin dashboards.",
+    highlights: [
+      "Built an interactive specimen lab that previews vocalized Arabic text live with automatic diacritic rubrication and switchable Naskh, Kufi, and Diwani styles.",
+      "Implemented the collector cart with discount codes, automatic free shipping, 15% VAT, and a printable simplified tax invoice.",
+      "Developed customer and admin studios for order tracking, draft saving, and catalog and order management, backed by Supabase Auth and PostgreSQL with Row Level Security.",
+      "Delivered full RTL/LTR bilingual support with Arabic/English switching and a dark mode.",
+    ],
+    techStack: [
+      "React.js",
+      "Vite",
+      "Tailwind CSS v4",
+      "Supabase",
+      "PostgreSQL",
+      "Context API",
+      "EmailJS",
+      "Netlify",
+    ],
+    githubUrl: "https://github.com/HosamMosstfa/dar-alnakheel",
+    liveUrl: "https://lively-bienenstitch-ea151f.netlify.app/",
+    architecture: {
+      frontend:
+        "React + Vite single-page app styled with Tailwind CSS v4, organized into reusable components and Auth, Cart, Language, Theme, and Toast context providers.",
+      state:
+        "Context-based global state for authentication, cart, language (RTL/LTR), and theme, with a localStorage demo fallback when Supabase keys are not connected.",
+      backend:
+        "Supabase Auth and PostgreSQL with Row Level Security; optional EmailJS notifications for commission requests.",
+      deployment:
+        "Git-connected deployment on Netlify (netlify.toml).",
+    },
+  },
+  {
     id: "store-ecommerce",
     title: ".store — Multi-Page E-Commerce Storefront",
     category: "Front-End",
-    period: "2024",
-    sortDate: "2024-11",
-    priority: 7,
-    badge: "Live App · GitHub Pages",
+    period: "Oct 2024",
+    badge: "EraaSoft Diploma · GitHub Pages",
     featured: false,
     hasVisualPreview: false,
     description:
@@ -468,7 +428,7 @@ export const EXPERIENCE = [
     role: "Data Entry Specialist",
     company: "Fajr Al-Mutaqaddimah",
     location: "Dammam, Saudi Arabia",
-    period: "Sep 2026 – Oct 2026",
+    period: "Oct 2026 – Nov 2026",
     points: [
       "Entered, verified, and maintained business data accurately in company systems.",
       "Kept records organized and met daily deadlines.",
@@ -488,7 +448,7 @@ export const EXPERIENCE = [
 
 export const EDUCATION = [
   {
-    degree: "Full Stack .NET Track",
+    degree: "Full Stack Web Development Using .NET Track",
     institution: "Information Technology Institute (ITI) — Minya",
     period: "Jul 2025 – Dec 2025",
     details:
