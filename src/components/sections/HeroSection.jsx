@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 import {
   MapPin,
   Code2,
@@ -10,22 +10,18 @@ import {
   Sparkles,
   Maximize2,
   X,
-} from "lucide-react";
-import RevealSection from "../common/RevealSection";
-import SpotlightCard from "../common/SpotlightCard";
-import { GithubIcon, LinkedinIcon } from "../common/Icons";
-import {
-  PERSONAL_INFO,
-  ROLE_PERSPECTIVES,
-  PROJECTS,
-} from "../../data/portfolioData";
+} from 'lucide-react';
+import RevealSection from '../common/RevealSection';
+import SpotlightCard from '../common/SpotlightCard';
+import { GithubIcon, LinkedinIcon } from '../common/Icons';
+import { PERSONAL_INFO, ROLE_PERSPECTIVES, PROJECTS } from '../../data/portfolioData';
 
 /* ---------- shared class strings ---------- */
 const FOCUS =
-  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2B2D31] dark:focus-visible:outline-[#FFC93C]";
+  'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2B2D31] dark:focus-visible:outline-[#FFC93C]';
 
 const BTN_BASE =
-  "inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-xs sm:text-sm transition motion-safe:hover:-translate-y-0.5 " +
+  'inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-xs sm:text-sm transition motion-safe:hover:-translate-y-0.5 ' +
   FOCUS;
 
 const BTN_PRIMARY = `${BTN_BASE} bg-[#FFC93C] font-extrabold text-[#2B2D31] shadow-md hover:opacity-95`;
@@ -45,12 +41,8 @@ function Credential({ icon: Icon, title, text }) {
         <Icon className="h-3.5 w-3.5" />
       </span>
       <div className="min-w-0">
-        <p className="text-[13px] font-bold leading-snug text-white dark:text-[#2B2D31]">
-          {title}
-        </p>
-        <p className="text-[11px] leading-snug text-[#D9DADC]/75 dark:text-[#2B2D31]/75">
-          {text}
-        </p>
+        <p className="text-[13px] font-bold leading-snug text-white dark:text-[#2B2D31]">{title}</p>
+        <p className="text-[11px] leading-snug text-[#D9DADC]/75 dark:text-[#2B2D31]/75">{text}</p>
       </div>
     </li>
   );
@@ -70,17 +62,16 @@ function Metric({ value, label }) {
 }
 
 function initials(name) {
-  if (!name || typeof name !== "string") return "HF";
+  if (!name || typeof name !== 'string') return 'HF';
   const parts = name.trim().split(/\s+/).filter(Boolean);
-  if (!parts.length) return "HF";
-  const first = parts[0]?.[0] || "";
-  const last = parts.length > 1 ? parts[parts.length - 1]?.[0] || "" : "";
-  return (first + last || "HF").toUpperCase();
+  if (!parts.length) return 'HF';
+  const first = parts[0]?.[0] || '';
+  const last = parts.length > 1 ? parts[parts.length - 1]?.[0] || '' : '';
+  return (first + last || 'HF').toUpperCase();
 }
 
 export default function HeroSection({ region, roleKey, setRoleKey, onOpenCv }) {
-  const activeRole =
-    ROLE_PERSPECTIVES[roleKey] || Object.values(ROLE_PERSPECTIVES)[0];
+  const activeRole = ROLE_PERSPECTIVES[roleKey] || Object.values(ROLE_PERSPECTIVES)[0];
   const [imgError, setImgError] = useState(false);
   const [isAvatarOpen, setIsAvatarOpen] = useState(false);
 
@@ -92,16 +83,16 @@ export default function HeroSection({ region, roleKey, setRoleKey, onOpenCv }) {
     if (!isAvatarOpen) return;
 
     const handleKeyDown = (e) => {
-      if (e.key === "Escape") setIsAvatarOpen(false);
+      if (e.key === 'Escape') setIsAvatarOpen(false);
     };
 
     const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", handleKeyDown);
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKeyDown);
 
     return () => {
       document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener('keydown', handleKeyDown);
     };
   }, [isAvatarOpen]);
 
@@ -119,10 +110,7 @@ export default function HeroSection({ region, roleKey, setRoleKey, onOpenCv }) {
                 {/* status + location */}
                 <div className="mb-3.5 flex flex-col items-start gap-2 text-xs font-bold sm:flex-row sm:flex-wrap sm:items-center sm:gap-2.5">
                   <span className="inline-flex max-w-full items-center gap-2 rounded-2xl bg-[#FFC93C] px-3 py-1 text-left leading-snug text-[#2B2D31] shadow-sm sm:rounded-full">
-                    <span
-                      aria-hidden="true"
-                      className="relative flex h-2 w-2 shrink-0"
-                    >
+                    <span aria-hidden="true" className="relative flex h-2 w-2 shrink-0">
                       <span className="absolute inline-flex h-full w-full rounded-full bg-[#2B2D31] opacity-60 motion-safe:animate-ping" />
                       <span className="relative inline-flex h-2 w-2 rounded-full bg-[#2B2D31]" />
                     </span>
@@ -167,8 +155,8 @@ export default function HeroSection({ region, roleKey, setRoleKey, onOpenCv }) {
                           onClick={() => setRoleKey(role.id)}
                           className={`rounded-lg px-2 py-2 text-center text-xs font-bold leading-tight transition-all sm:px-3.5 sm:py-1.5 ${FOCUS} ${
                             active
-                              ? "bg-[#FFC93C] text-[#2B2D31] shadow-sm"
-                              : "text-[#2B2D31]/80 hover:bg-[#2B2D31]/10 dark:text-[#D9DADC]/85 dark:hover:bg-[#D9DADC]/10"
+                              ? 'bg-[#FFC93C] text-[#2B2D31] shadow-sm'
+                              : 'text-[#2B2D31]/80 hover:bg-[#2B2D31]/10 dark:text-[#D9DADC]/85 dark:hover:bg-[#D9DADC]/10'
                           }`}
                         >
                           {role.label}
@@ -185,10 +173,7 @@ export default function HeroSection({ region, roleKey, setRoleKey, onOpenCv }) {
                   {activeRole.summary}
                 </p>
 
-                <ul
-                  className="mt-4 flex flex-wrap gap-1.5"
-                  aria-label="Core focus"
-                >
+                <ul className="mt-4 flex flex-wrap gap-1.5" aria-label="Core focus">
                   {activeRole.coreFocus.map((tech) => (
                     <li
                       key={tech}
@@ -202,24 +187,15 @@ export default function HeroSection({ region, roleKey, setRoleKey, onOpenCv }) {
 
               {/* CTAs: single clean row on desktop */}
               <div className="mt-6 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:items-center">
-                <a
-                  href="#projects"
-                  className={`${BTN_PRIMARY} w-full sm:w-auto`}
-                >
+                <a href="#projects" className={`${BTN_PRIMARY} w-full sm:w-auto`}>
                   <Code2 aria-hidden="true" className="h-4 w-4 shrink-0" />
                   <span>Explore Projects</span>
                 </a>
-                <button
-                  type="button"
-                  onClick={onOpenCv}
-                  className={`${BTN_DARK} w-full sm:w-auto`}
-                >
+                <button type="button" onClick={onOpenCv} className={`${BTN_DARK} w-full sm:w-auto`}>
                   <FileText aria-hidden="true" className="h-4 w-4 shrink-0" />
                   <span>
                     <span className="sm:hidden">CV · {activeRole.label}</span>
-                    <span className="hidden sm:inline">
-                      Preview CV ({activeRole.label})
-                    </span>
+                    <span className="hidden sm:inline">Preview CV ({activeRole.label})</span>
                   </span>
                 </button>
                 <div className="grid grid-cols-2 gap-2.5 sm:flex sm:gap-2">
@@ -230,10 +206,7 @@ export default function HeroSection({ region, roleKey, setRoleKey, onOpenCv }) {
                     aria-label="GitHub profile (opens in a new tab)"
                     className={BTN_OUTLINE}
                   >
-                    <GithubIcon
-                      aria-hidden="true"
-                      className="h-4 w-4 shrink-0"
-                    />
+                    <GithubIcon aria-hidden="true" className="h-4 w-4 shrink-0" />
                     <span>GitHub</span>
                   </a>
                   <a
@@ -243,10 +216,7 @@ export default function HeroSection({ region, roleKey, setRoleKey, onOpenCv }) {
                     aria-label="LinkedIn profile (opens in a new tab)"
                     className={BTN_OUTLINE}
                   >
-                    <LinkedinIcon
-                      aria-hidden="true"
-                      className="h-4 w-4 shrink-0"
-                    />
+                    <LinkedinIcon aria-hidden="true" className="h-4 w-4 shrink-0" />
                     <span>LinkedIn</span>
                   </a>
                 </div>
@@ -263,13 +233,9 @@ export default function HeroSection({ region, roleKey, setRoleKey, onOpenCv }) {
                     disabled={!hasValidAvatar}
                     onClick={() => hasValidAvatar && setIsAvatarOpen(true)}
                     aria-label="View full profile photo"
-                    title={
-                      hasValidAvatar ? "Click to enlarge photo" : undefined
-                    }
+                    title={hasValidAvatar ? 'Click to enlarge photo' : undefined}
                     className={`group relative h-full w-full overflow-hidden rounded-2xl bg-[#E5E7EB] ring-2 ring-[#FFC93C] ring-offset-2 ring-offset-[#2B2D31] dark:ring-[#2B2D31] dark:ring-offset-[#D9DADC] ${
-                      hasValidAvatar
-                        ? "cursor-zoom-in transition hover:ring-4"
-                        : "cursor-default"
+                      hasValidAvatar ? 'cursor-zoom-in transition hover:ring-4' : 'cursor-default'
                     } ${FOCUS}`}
                   >
                     {hasValidAvatar ? (
@@ -343,7 +309,7 @@ export default function HeroSection({ region, roleKey, setRoleKey, onOpenCv }) {
                   <Credential
                     icon={GraduationCap}
                     title="Full Stack .NET Track"
-                    text="ITI intensive training track"
+                    text="ITI intensive track · NutriGuide graduation project"
                   />
                   <Credential
                     icon={ShieldCheck}
@@ -373,10 +339,7 @@ export default function HeroSection({ region, roleKey, setRoleKey, onOpenCv }) {
             {/* Header Bar */}
             <div className="flex items-center justify-between gap-3 border-b border-[#D9DADC]/15 bg-[#1B1D20] px-4 py-3">
               <div className="min-w-0">
-                <h3
-                  id="avatar-modal-title"
-                  className="truncate text-sm font-extrabold text-white"
-                >
+                <h3 id="avatar-modal-title" className="truncate text-sm font-extrabold text-white">
                   {PERSONAL_INFO.name}
                 </h3>
                 <p className="truncate font-mono text-[11px] text-[#FFC93C]">

@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from "react";
-import { createPortal } from "react-dom";
-import { Printer, X } from "lucide-react";
+import React, { useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
+import { Printer, X } from 'lucide-react';
 import {
   PERSONAL_INFO,
   ROLE_PERSPECTIVES,
@@ -8,13 +8,17 @@ import {
   SKILLS_GROUPS,
   EXPERIENCE,
   EDUCATION,
-} from "../../data/portfolioData";
+} from '../../data/portfolioData';
 
 /* ---------- tweakables ---------- */
-const MAX_PROJECTS = 5; // projects shown on the CV
+const MAX_PROJECTS = PROJECTS.length; // all projects shown on the CV (lower it to fit one page)
 const MAX_POINTS = 1; // bullet points per experience (raise to 2 if the page still fits)
-const LINKEDIN = PERSONAL_INFO.linkedin || "linkedin.com/in/hosammostfa";
-const GITHUB = PERSONAL_INFO.github || "github.com/HosamMosstfa";
+const LINKEDIN = PERSONAL_INFO.linkedin || 'linkedin.com/in/hosammostfa';
+const GITHUB = PERSONAL_INFO.github || 'github.com/HosamMosstfa';
+
+const CV_PROJECTS = [...PROJECTS]
+  .sort((x, y) => (x.priority ?? 99) - (y.priority ?? 99))
+  .slice(0, MAX_PROJECTS);
 
 /* ---------- print rules (self-contained, no external CSS needed) ----------
    The modal is rendered in a portal on <body>, so on print we can simply hide
@@ -50,16 +54,13 @@ const PRINT_CSS = `
 
 /* ---------- small helpers ---------- */
 const absUrl = (u) => (/^(https?:|mailto:|tel:)/.test(u) ? u : `https://${u}`);
-const prettyUrl = (u) =>
-  u.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
-const telHref = (p) => `tel:${String(p).replace(/[^\d+]/g, "")}`;
+const prettyUrl = (u) => u.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
+const telHref = (p) => `tel:${String(p).replace(/[^\d+]/g, '')}`;
 
 function Section({ title, children }) {
   return (
     <section className="cv-section mt-4">
-      <h2 className="border-b border-black pb-0.5 font-bold text-black">
-        {title}
-      </h2>
+      <h2 className="border-b border-black pb-0.5 font-bold text-black">{title}</h2>
       <div className="mt-1.5">{children}</div>
     </section>
   );
@@ -68,9 +69,7 @@ function Section({ title, children }) {
 /* One plain line: "Title | Place | Date". Keeping the date on the same line
    (not right-aligned in a separate cell) is what ATS parsers read best. */
 function Line({ parts }) {
-  return (
-    <p className="font-bold text-black">{parts.filter(Boolean).join(" | ")}</p>
-  );
+  return <p className="font-bold text-black">{parts.filter(Boolean).join(' | ')}</p>;
 }
 
 function Segmented({ children }) {
@@ -88,9 +87,7 @@ function SegButton({ active, onClick, children }) {
       onClick={onClick}
       aria-pressed={active}
       className={`px-3 py-1.5 text-xs font-bold transition-colors ${
-        active
-          ? "bg-[#2B2D31] text-[#FFC93C]"
-          : "text-[#2B2D31] hover:bg-[#2B2D31]/10"
+        active ? 'bg-[#2B2D31] text-[#FFC93C]' : 'text-[#2B2D31] hover:bg-[#2B2D31]/10'
       }`}
     >
       {children}
@@ -98,33 +95,26 @@ function SegButton({ active, onClick, children }) {
   );
 }
 
-export default function CvModal({
-  isOpen,
-  onClose,
-  roleKey,
-  setRoleKey,
-  regionKey,
-  setRegionKey,
-}) {
+export default function CvModal({ isOpen, onClose, roleKey, setRoleKey, regionKey, setRegionKey }) {
   const closeRef = useRef(null);
 
   // Escape to close, lock page scroll, focus the close button
   useEffect(() => {
     if (!isOpen) return undefined;
-    const onKey = (e) => e.key === "Escape" && onClose();
+    const onKey = (e) => e.key === 'Escape' && onClose();
     const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', onKey);
     closeRef.current?.focus();
     return () => {
-      document.removeEventListener("keydown", onKey);
+      document.removeEventListener('keydown', onKey);
       document.body.style.overflow = prevOverflow;
     };
   }, [isOpen, onClose]);
 
-  if (!isOpen || typeof document === "undefined") return null;
+  if (!isOpen || typeof document === 'undefined') return null;
 
-  const region = PERSONAL_INFO.regions[regionKey];
+  const region = PERSONAL_INFO.regions[regionKey] || Object.values(PERSONAL_INFO.regions)[0];
   const activeRole = ROLE_PERSPECTIVES[roleKey];
 
   const contact = [
@@ -168,11 +158,7 @@ export default function CvModal({
               </span>
               <Segmented>
                 {Object.values(ROLE_PERSPECTIVES).map((r) => (
-                  <SegButton
-                    key={r.id}
-                    active={roleKey === r.id}
-                    onClick={() => setRoleKey(r.id)}
-                  >
+                  <SegButton key={r.id} active={roleKey === r.id} onClick={() => setRoleKey(r.id)}>
                     {r.label}
                   </SegButton>
                 ))}
@@ -185,11 +171,7 @@ export default function CvModal({
               </span>
               <Segmented>
                 {Object.entries(PERSONAL_INFO.regions).map(([key, r]) => (
-                  <SegButton
-                    key={key}
-                    active={regionKey === key}
-                    onClick={() => setRegionKey(key)}
-                  >
+                  <SegButton key={key} active={regionKey === key} onClick={() => setRegionKey(key)}>
                     {r.label}
                   </SegButton>
                 ))}
@@ -224,19 +206,14 @@ export default function CvModal({
           className="p-6 font-sans text-[13px] leading-snug text-slate-900 sm:p-10"
         >
           <header className="border-b-2 border-black pb-3 text-center">
-            <h1
-              id="cv-name"
-              className="text-[26px] font-bold leading-tight text-black"
-            >
+            <h1 id="cv-name" className="text-[26px] font-bold leading-tight text-black">
               {PERSONAL_INFO.name}
             </h1>
-            <p className="mt-0.5 text-[15px] font-semibold text-slate-700">
-              {activeRole.title}
-            </p>
+            <p className="mt-0.5 text-[15px] font-semibold text-slate-700">{activeRole.title}</p>
             <p className="mt-1.5">
               {contact.map((item, i) => (
                 <React.Fragment key={item.key}>
-                  {i > 0 && " | "}
+                  {i > 0 && ' | '}
                   {item}
                 </React.Fragment>
               ))}
@@ -245,8 +222,7 @@ export default function CvModal({
 
           <Section title="Professional Summary">
             <p>
-              {activeRole.summary} Based in {region.location}, seeking a{" "}
-              {activeRole.title} role.
+              {activeRole.summary} Based in {region.location}, seeking a {activeRole.title} role.
             </p>
           </Section>
 
@@ -254,7 +230,7 @@ export default function CvModal({
             <div className="space-y-0.5">
               {SKILLS_GROUPS.map((g) => (
                 <p key={g.title}>
-                  <b>{g.title}:</b> {g.skills.join(", ")}
+                  <b>{g.title}:</b> {g.skills.join(', ')}
                 </p>
               ))}
             </div>
@@ -262,7 +238,7 @@ export default function CvModal({
 
           <Section title="Projects">
             <div className="space-y-2.5">
-              {PROJECTS.slice(0, MAX_PROJECTS).map((proj) => {
+              {CV_PROJECTS.map((proj) => {
                 const live = proj.liveUrl || proj.link || proj.demo;
                 const repo = proj.githubUrl || proj.github || proj.repo;
                 return (
@@ -273,21 +249,19 @@ export default function CvModal({
                       <p>
                         {live ? (
                           <>
-                            <b>Live:</b>{" "}
-                            <a href={absUrl(live)}>{prettyUrl(live)}</a>
+                            <b>Live:</b> <a href={absUrl(live)}>{prettyUrl(live)}</a>
                           </>
                         ) : null}
-                        {live && repo ? " | " : null}
+                        {live && repo ? ' | ' : null}
                         {repo ? (
                           <>
-                            <b>GitHub:</b>{" "}
-                            <a href={absUrl(repo)}>{prettyUrl(repo)}</a>
+                            <b>GitHub:</b> <a href={absUrl(repo)}>{prettyUrl(repo)}</a>
                           </>
                         ) : null}
                       </p>
                     ) : null}
                     <p>
-                      <b>Tech Stack:</b> {proj.techStack.join(", ")}
+                      <b>Tech Stack:</b> {proj.techStack.join(', ')}
                     </p>
                   </article>
                 );
@@ -299,9 +273,7 @@ export default function CvModal({
             <div className="space-y-2.5">
               {EXPERIENCE.map((exp, i) => (
                 <article key={i} className="cv-item">
-                  <Line
-                    parts={[exp.role, exp.company, exp.location, exp.period]}
-                  />
+                  <Line parts={[exp.role, exp.company, exp.location, exp.period]} />
                   <ul className="list-disc pl-5">
                     {exp.points.slice(0, MAX_POINTS).map((p, j) => (
                       <li key={j}>{p}</li>
